@@ -1,0 +1,17 @@
+/.gradle/
+/.idea/
+/build/
+/build/classes/
+/build/devlibs/
+/build/generated/
+/build/libs/
+/build/libs/iNourish-1.0-SNAPSHOT.jar
+/build/libs/iNourish-1.0-SNAPSHOT-sources.jar
+/build/loom-cache/
+/build/processIncludeJars/
+/build/reports/
+/build/resources/
+/build/tmp/
+/gradle/
+/run/
+/LICENSE.txt

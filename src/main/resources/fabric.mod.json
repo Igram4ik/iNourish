@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "inourish",
+  "version": "${version}",
+  "name": "iNourish",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "unlicense",
+  "icon": "assets/inourish/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.igrammine.nourish.client.iNourishClient"
+    ],
+    "main": [
+      "dev.igrammine.nourish.iNourish"
+    ]
+  },
+  "mixins": [
+    "inourish.mixins.json",
+    {
+      "config": "inourish.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
