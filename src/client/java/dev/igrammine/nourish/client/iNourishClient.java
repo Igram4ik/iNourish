@@ -23,8 +23,8 @@ public class iNourishClient implements ClientModInitializer {
             commandDispatcher.register(CommandManager.literal("getnourish").executes(context -> {
                 var player = context.getSource().getPlayer();
                 if (player != null) {
-                    //CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> getNearBlock(player));
-                    getNearBlock(player);
+                    CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> getNearBlock(player));
+
                     started = true;
                 } else context.getSource().sendFeedback(() -> Text.literal("Команду может использовать только игрок блять"), false);
                 return 1;
@@ -75,7 +75,7 @@ public class iNourishClient implements ClientModInitializer {
                 }
             }
         }
-        //if (started)
-        //    CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> getNearBlock(player));
+        if (started)
+            CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> getNearBlock(player));
     }
 }
