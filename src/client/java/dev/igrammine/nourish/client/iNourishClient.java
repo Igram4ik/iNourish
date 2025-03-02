@@ -11,6 +11,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -53,6 +54,22 @@ public class iNourishClient implements ClientModInitializer {
             if (current_age < max_age) {
                 player.getWorld().setBlockState(pos, block.getBlock().getDefaultState().with(
                         IntProperty.of("age", 0, max_age),
+                        ((max_age-current_age) >= 4) ? current_age+new Random(1).nextInt(4) : current_age+3
+                ), Block.NOTIFY_ALL);
+                player.getWorld().addParticle(
+                        ParticleTypes.TOTEM_OF_UNDYING, pos.getX(), pos.getY(), pos.getZ(), 0.5D, 0.5D, 0.5D
+                );
+            }
+        }
+
+        // STAGE
+        if (block.getBlock().getStateManager().getProperty("stage") != null) {
+            var current_age = Integer.parseInt(block.get(block.getBlock().getStateManager().getProperty("stage")).toString());
+            var max_age = block.getBlock().getStateManager().getProperty("stage").getValues().size()-1;
+
+            if (current_age < max_age) {
+                player.getWorld().setBlockState(pos, block.getBlock().getDefaultState().with(
+                        IntProperty.of("stage", 0, max_age),
                         ((max_age-current_age) >= 2) ? current_age+2 : current_age+1
                 ), Block.NOTIFY_ALL);
                 player.getWorld().addParticle(
