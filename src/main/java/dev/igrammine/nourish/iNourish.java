@@ -55,13 +55,8 @@ public class iNourish implements ModInitializer {
         // AGE
         if (block.getBlock().getStateManager().getProperty("age") != null && (
                 block.getBlock() != Blocks.BAMBOO ||
-                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:red_grape_seeds")) ||
-                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:red_grape")) ||
-                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:jungle_grape_seeds_red")) ||
-                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:jungle_grapes_red")) ||
-                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:dark_cherry_leaves")) ||
-                block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:apple_leaves"))
-        )) {
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("vinery:oak_lattice")))
+        ) {
             var current_age = Integer.parseInt(block.get(block.getBlock().getStateManager().getProperty("age")).toString());
             var max_age = block.getBlock().getStateManager().getProperty("age").getValues().size()-1;
 
