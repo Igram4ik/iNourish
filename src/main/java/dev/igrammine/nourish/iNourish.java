@@ -1,34 +1,23 @@
 package dev.igrammine.nourish;
 
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.ParseResults;
-import com.mojang.brigadier.ResultConsumer;
-import com.mojang.brigadier.context.CommandContext;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.particle.ParticleGroup;
-import net.minecraft.client.util.ParticleUtil;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
 
 public class iNourish implements ModInitializer {
 
@@ -64,7 +53,14 @@ public class iNourish implements ModInitializer {
 
     public static void nourish(BlockState block, BlockPos pos, ServerPlayerEntity player) {
         // AGE
-        if (block.getBlock().getStateManager().getProperty("age") != null && block.getBlock() != Blocks.BAMBOO) {
+        if (block.getBlock().getStateManager().getProperty("age") != null && (
+                block.getBlock() != Blocks.BAMBOO ||
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("red_grape_seeds")) ||
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("red_grape")) ||
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("jungle_grape_seeds_red")) ||
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("jungle_grapes_red")) ||
+                        block.getBlock() != Registries.BLOCK.get(Identifier.tryParse("dark_cherry_leaves"))
+        )) {
             var current_age = Integer.parseInt(block.get(block.getBlock().getStateManager().getProperty("age")).toString());
             var max_age = block.getBlock().getStateManager().getProperty("age").getValues().size()-1;
 
